@@ -6,6 +6,7 @@ import {
   View
 } from 'react-native';
 import Header from './src/components/Header'
+import CurrencyList from './src/components/CurrencyList'
 
 
 export default class App extends Component<{}> {
@@ -13,7 +14,9 @@ export default class App extends Component<{}> {
     return (
       <View>
         <Header />
+        <CurrencyList />
       </View>
+
     );
   }
 }
