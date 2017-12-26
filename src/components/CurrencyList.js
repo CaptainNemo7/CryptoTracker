@@ -3,6 +3,7 @@ import { View, Text, ScrollView } from 'react-native';
 import axios from 'axios';
 import Currency from './Currency';
 
+
 class CurrencyList extends Component {
 	state = {
 		currencies: []
