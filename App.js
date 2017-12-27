@@ -4,8 +4,6 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
-  TouchableOpacity,
 } from 'react-native';
 import {IntlProvider, FormattedNumber} from 'react-intl';
 import { StackNavigator } from 'react-navigation';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import IntlProvider from 'react-intl';
+import Numeral from 'numeral';
 import Container from './Container'
 import ContainerSection from './ContainerSection'
 import { StackNavigator } from 'react-navigation';
@@ -17,6 +17,8 @@ const Currency = ({ currency, navigate }) => {
 	const changeGreater = () => {
 		return currency.percent_change_1h > 0 ? {color: 'green'} : {color: 'red'}
 	}
+
+	let price = Numeral(price_usd).format('0,0.00')
 
 	const { headerStyle, headerText, priceDetail, change } = styles;
 	return (
@@ -35,7 +37,7 @@ const Currency = ({ currency, navigate }) => {
 
 			<ContainerSection>
 				<View style={priceDetail}>
-					<Text>Current Price: ${price_usd}</Text>
+					<Text>Current Price: ${price}</Text>
 					<Text style={changeGreater()}>{percent_change_1h}%</Text>
 				</View>
 			</ContainerSection>
