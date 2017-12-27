@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+import IntlProvider from 'react-intl';
 import Container from './Container'
 import ContainerSection from './ContainerSection'
 const Currency = ({ currency }) => {
@@ -12,25 +13,28 @@ const Currency = ({ currency }) => {
 		max_supply,
 	} = currency;
 
-	const { headerStyle, headerText, priceDetail } = styles;
+	const changeGreater = () => {
+		return currency.percent_change_1h > 0 ? {color: 'green'} : {color: 'red'}
+	}
+
+	const { headerStyle, headerText, priceDetail, change } = styles;
 	return (
 		<Container>
+			<TouchableOpacity>
 			<ContainerSection>
 				<View style={headerStyle}>
 					<Text style={headerText}>{name}</Text>
 					<Text>{symbol}</Text>
 				</View>
-				<View style={priceDetail}>
-					<Text>${price_usd}</Text>
-					<Text>Last Hour Change: {percent_change_1h}</Text>
-				</View>
 			</ContainerSection>
+
 			<ContainerSection>
-				<View>
-					<Text>Current Supply: {available_supply}</Text>
-					<Text>Max Supply: {max_supply}</Text>
+				<View style={priceDetail}>
+					<Text>Current Price: ${price_usd}</Text>
+					<Text style={changeGreater()}>{percent_change_1h}%</Text>
 				</View>
 			</ContainerSection>
+			</TouchableOpacity>
 		</Container>
 	)
 }
@@ -38,15 +42,17 @@ const Currency = ({ currency }) => {
 const styles = {
 	headerStyle: {
 		flexDirection: 'column',
-		justifyContent: 'space-around'
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 	headerText: {
-		fontSize: 20,
+		fontSize: 25,
+		fontWeight: 'bold'
 	},
 	priceDetail: {
+		flexDirection: 'column',
 		justifyContent: 'center',
-		alignItems: 'flex-end',
-		marginLeft: 20,
+		alignItems: 'center',
 	}
 }
 

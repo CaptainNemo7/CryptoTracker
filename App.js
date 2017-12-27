@@ -3,8 +3,10 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  NavigatorIOS,
 } from 'react-native';
+import {IntlProvider, FormattedNumber} from 'react-intl';
 import Header from './src/components/Header'
 import CurrencyList from './src/components/CurrencyList'
 
@@ -12,11 +14,12 @@ import CurrencyList from './src/components/CurrencyList'
 export default class App extends Component<{}> {
   render() {
     return (
-      <View>
+      
+      <View style={{ flex: 1 }}>
         <Header />
         <CurrencyList />
       </View>
-
+   
     );
   }
 }
