@@ -23,12 +23,11 @@ class CurrencyList extends Component {
 
 	displayCurrencies() {
 		return this.state.currencies.map((currency) => {
-			return <Currency key={currency.id} currency={currency} />
+			return <Currency key={currency.id} currency={currency} navigate={this.props} />
 		})
 	}
 
 	render() {
-		console.log(this.state.currencies)
 		return (
 			<ScrollView>
 				{this.displayCurrencies()}

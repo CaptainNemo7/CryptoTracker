@@ -4,41 +4,63 @@ import {
   StyleSheet,
   Text,
   View,
-  NavigatorIOS,
+  Button,
+  TouchableOpacity,
 } from 'react-native';
 import {IntlProvider, FormattedNumber} from 'react-intl';
+import { StackNavigator } from 'react-navigation';
 import Header from './src/components/Header'
 import CurrencyList from './src/components/CurrencyList'
+import CurrencyDetail from './src/components/CurrencyDetail'
 
+// <Header />
 
-export default class App extends Component<{}> {
+class HomeScreen extends Component {
+  static navigationOptions = {
+    title: 'Currency List'
+  };
+  render() {
+    const { navigate } = this.props.navigation;
+    return (
+      <View style={{ flex: 1 }}>
+        <CurrencyList navigate={navigate}/>
+      </View>
+    )
+  }
+}
+
+class CurrencyScreen extends Component {
+
+  static navigationOptions = ({ navigation }) =>({
+
+    title: `${navigation.state.params.currency.currency.name}`,
+  });
+  render() {
+    const { currency } = this.props.navigation.state.params;
+    console.log(this.props.navigation.state.params.currency.currency)
+    
+    return <CurrencyDetail details={currency}/>
+  }
+}
+
+const CryptoTracker = StackNavigator({
+  Home: { screen: HomeScreen },
+  ChosenCurrency: { screen: CurrencyScreen }
+})
+
+export default class App extends Component {
   render() {
     return (
-      
-      <View style={{ flex: 1 }}>
-        <Header />
-        <CurrencyList />
-      </View>
-   
+      <CryptoTracker />
     );
   }
 }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     backgroundColor: '#F5FCFF',
-//   },
-//   welcome: {
-//     fontSize: 20,
-//     textAlign: 'center',
-//     margin: 10,
-//   },
-//   instructions: {
-//     textAlign: 'center',
-//     color: '#333333',
-//     marginBottom: 5,
-//   },
-// });
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems:'center',
+    justifyContent: 'center'
+  }
+})

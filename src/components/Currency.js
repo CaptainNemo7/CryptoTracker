@@ -3,7 +3,8 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import IntlProvider from 'react-intl';
 import Container from './Container'
 import ContainerSection from './ContainerSection'
-const Currency = ({ currency }) => {
+import { StackNavigator } from 'react-navigation';
+const Currency = ({ currency, navigate }) => {
 	const { 
 		name, 
 		symbol, 
@@ -19,8 +20,12 @@ const Currency = ({ currency }) => {
 
 	const { headerStyle, headerText, priceDetail, change } = styles;
 	return (
+
 		<Container>
-			<TouchableOpacity>
+			<TouchableOpacity 
+				onPress={()=> navigate.navigate('ChosenCurrency', {currency: {currency}})}
+				title={name}
+			>
 			<ContainerSection>
 				<View style={headerStyle}>
 					<Text style={headerText}>{name}</Text>
