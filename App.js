@@ -28,15 +28,11 @@ class HomeScreen extends Component {
 }
 
 class CurrencyScreen extends Component {
-
   static navigationOptions = ({ navigation }) =>({
-
     title: `${navigation.state.params.currency.currency.name}`,
   });
   render() {
-    const { currency } = this.props.navigation.state.params;
-    console.log(this.props.navigation.state.params.currency.currency)
-    
+    const { currency } = this.props.navigation.state.params;  
     return <CurrencyDetail details={currency}/>
   }
 }
